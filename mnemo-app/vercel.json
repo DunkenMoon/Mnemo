@@ -1,0 +1,16 @@
+{
+  "functions": {
+    "app/api/process/[documentId]/route.ts": {
+      "maxDuration": 60
+    },
+    "app/api/documents/upload/route.ts": {
+      "maxDuration": 60
+    },
+    "app/api/documents/upload-video/route.ts": {
+      "maxDuration": 60
+    },
+    "app/api/documents/upload-image/route.ts": {
+      "maxDuration": 60
+    }
+  }
+}
