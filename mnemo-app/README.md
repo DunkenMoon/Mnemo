@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mnemo: AI-Powered Spatial Learning
 
-## Getting Started
+Mnemo is a revolutionary learning platform that transforms your static lecture PDFs and notes into a navigable 3D knowledge universe. Study with AI, visualize concept relationships, and remember everything.
 
-First, run the development server:
+## 🌟 Key Features
+
+- **3D Knowledge Universe**: Navigate your lectures as a living galaxy using `three.js` and `react-three-fiber`. Concepts become nodes, and relationships become beams of light.
+- **ATLAS Voice AI**: Speak to Atlas using voice recognition. It understands your memory state, answers questions, and highlights relevant nodes in your 3D universe.
+- **Real-time Multiplayer**: Study together in 3D. See your friends' cursors floating in your universe in real time.
+- **AR on Any Phone**: Scan a QR code and project your knowledge graph into your physical space using WebAR. No app required.
+- **Adaptive Flashcards**: Smart spaced repetition that focuses on the nodes fading in your universe.
+- **Memory Analytics**: Visual feedback on your mastery of topics (green, yellow, red indicators).
+- **Multi-modal Inputs**: Upload PDFs or parse YouTube transcripts to generate your knowledge graphs instantly.
+
+## 🛠️ Technology Stack
+
+- **Framework**: Next.js 16 (App Router), React 19
+- **3D Graphics**: Three.js, `@react-three/fiber`, `@react-three/drei`
+- **Animations**: Framer Motion, Tailwind CSS v4
+- **Database**: Drizzle ORM, Neon Serverless
+- **Authentication**: Better Auth
+- **AI Integration**: Google Generative AI (Gemini), Groq SDK
+- **Speech**: React Speech Recognition
+- **Document Processing**: `pdf-parse`, `youtube-transcript`
+- **UI Components**: shadcn/ui, Lucide React
+
+## 🚀 Getting Started
+
+1. **Clone the repository and install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   ```
+
+2. **Set up environment variables:**
+   Copy the example environment file and fill in your keys (Database, AI providers, Auth secrets).
+   ```bash
+   cp .env.local.example .env.local
+   ```
+
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
+
+## 📦 Database Setup
+
+This project uses Drizzle ORM. To push the schema to your database:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx drizzle-kit push
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌐 Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Mnemo is designed to be easily deployed on [Vercel](https://vercel.com/). Connect your GitHub repository to Vercel and it will automatically build and deploy the Next.js application. Ensure all necessary environment variables are configured in the Vercel dashboard.

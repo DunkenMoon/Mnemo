@@ -1,10 +1,16 @@
 import Groq from "groq-sdk"
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
+let _groq: Groq | null = null
+function getGroq(): Groq {
+  if (!_groq) {
+    _groq = new Groq({ apiKey: process.env.GROQ_API_KEY ?? "" })
+  }
+  return _groq
+}
 
 async function callAI(prompt: string, maxTokens = 4096): Promise<string> {
   try {
-    const completion = await groq.chat.completions.create({
+    const completion = await getGroq().chat.completions.create({
       model: "llama-3.3-70b-versatile",
       messages: [{ role: "user", content: prompt }],
       temperature: 0.3,
@@ -93,7 +99,7 @@ ${trimmed}`
       target: String(r.target ?? ""),
       label: String(r.label ?? "relates to"),
       strength: Math.min(1, Math.max(0.1, Number(r.strength) || 0.5)),
-    })).filter((r) => r.source && r.target)
+    })).filter((r: Relationship) => r.source && r.target)
 
     console.log("[CONCEPTS] Extracted:", concepts.length, "concepts,", relationships.length, "relationships")
 
@@ -140,7 +146,7 @@ difficulty is integer 1-5.`
       question: String(f.question ?? ""),
       answer: String(f.answer ?? ""),
       difficulty: Math.min(5, Math.max(1, Number(f.difficulty) || 3)),
-    })).filter((f) => f.question && f.answer)
+    })).filter((f: FlashcardData) => f.question && f.answer)
   } catch (err: any) {
     console.error("[FLASHCARDS] Failed for concept:", concept, err?.message)
     return []
@@ -181,7 +187,7 @@ export async function atlasChat(
   history: { role: string; content: string }[]
 ): Promise<string> {
   try {
-    const completion = await groq.chat.completions.create({
+    const completion = await getGroq().chat.completions.create({
       model: "llama-3.3-70b-versatile",
       messages: [
         {
